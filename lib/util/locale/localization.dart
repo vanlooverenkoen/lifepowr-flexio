@@ -62,6 +62,11 @@ class Localization {
   /// en:  **'Flexio KVL'**
   String get title => _t(LocalizationKeys.title);
 
+  /// Translations:
+  ///
+  /// en:  **'You pressed the button this many times:'**
+  String get homeLabel => _t(LocalizationKeys.homeLabel);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 
 }
