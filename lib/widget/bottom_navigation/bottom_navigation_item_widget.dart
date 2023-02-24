@@ -31,7 +31,7 @@ class BottomNavigationItemWidget extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   text,
-                  style: isSelected ? theme.primaryText.body : theme.subtleText.body,
+                  style: isSelected ? theme.primaryText.subtitle : theme.subtleText.subtitle,
                 ),
               ],
             ),

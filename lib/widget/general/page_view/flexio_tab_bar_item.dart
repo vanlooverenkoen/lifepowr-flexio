@@ -1,3 +1,4 @@
+import 'package:flexio_kvl/theme/theme_dimens.dart';
 import 'package:flexio_kvl/theme/theme_durations.dart';
 import 'package:flexio_kvl/widget/general/touch_feedback/touch_feedback.dart';
 import 'package:flexio_kvl/widget/provider/simple_provider.dart';
@@ -24,7 +25,12 @@ class FlexioTabBarItem extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(16),
-              child: Text(text),
+              child: AnimatedDefaultTextStyle(
+                style: isSelected ? theme.primaryText.subtitle : theme.secondaryText.subtitle,
+                curve: Curves.easeInOut,
+                duration: ThemeDurations.shortDuration,
+                child: Text(text),
+              ),
             ),
             AnimatedContainer(
               duration: ThemeDurations.shortDuration,

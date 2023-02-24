@@ -19,7 +19,7 @@ class EvInfoContainer extends StatelessWidget {
                   color: theme.colors.primary.withOpacity(0.25),
                   borderRadius: BorderRadius.circular(ThemeDimens.cardBorderRadius),
                   border: Border.all(
-                    color: theme.colors.primary,
+                    color: theme.colors.primary.withOpacity(0.5),
                     width: 2,
                   ),
                 ),

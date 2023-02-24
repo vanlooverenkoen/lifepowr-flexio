@@ -18,7 +18,7 @@ class FlexioTabBarHomeTabBar extends StatefulWidget {
 }
 
 class _FlexioTabBarHomeTabBarState extends State<FlexioTabBarHomeTabBar> {
-  var _currentPage = 0;
+  var _currentPage = 0.0;
 
   @override
   void initState() {
@@ -59,7 +59,7 @@ class _FlexioTabBarHomeTabBarState extends State<FlexioTabBarHomeTabBar> {
 
   void _updateState() {
     setState(() {
-      _currentPage = widget.controller.page?.toInt() ?? 0;
+      _currentPage = widget.controller.page ?? 0;
     });
   }
 
