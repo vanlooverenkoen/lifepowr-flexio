@@ -1,4 +1,3 @@
-import 'package:flexio_kvl/theme/theme_dimens.dart';
 import 'package:flexio_kvl/theme/theme_durations.dart';
 import 'package:flexio_kvl/widget/general/touch_feedback/touch_feedback.dart';
 import 'package:flexio_kvl/widget/provider/simple_provider.dart';

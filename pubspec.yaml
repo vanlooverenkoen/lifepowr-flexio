@@ -11,7 +11,9 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  fl_chart: ^0.61.0
   get_it: ^7.2.0
+  intl: ^0.17.0
   injectable: ^2.1.0
   icapps_architecture: ^0.8.1
   sprintf: ^7.0.0

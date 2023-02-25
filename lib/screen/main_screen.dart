@@ -1,4 +1,5 @@
 import 'package:flexio_kvl/di/injectable.dart';
+import 'package:flexio_kvl/screen/history/history_screen.dart';
 import 'package:flexio_kvl/screen/home/home_screen.dart';
 import 'package:flexio_kvl/viewmodel/main_viewmodel.dart';
 import 'package:flexio_kvl/widget/bottom_navigation/bottom_navigation.dart';
@@ -18,7 +19,7 @@ class MainScreen extends StatelessWidget {
             index: viewModel.currentIndex,
             children: const [
               HomeScreen(),
-              SizedBox(),
+              HistoryScreen(),
             ],
           ),
           bottomNavigationBar: BottomNavigation(

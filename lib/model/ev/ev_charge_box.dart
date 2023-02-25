@@ -1,4 +1,4 @@
-import 'package:flexio_kvl/model/ev_charge_box_status.dart';
+import 'package:flexio_kvl/model/ev/ev_charge_box_status.dart';
 
 class EvChargeBox {
   final String title;
