@@ -1,4 +1,5 @@
 import 'package:flexio_kvl/model/history/history_consumption.dart';
+import 'package:flexio_kvl/widget/provider/simple_provider.dart';
 import 'package:flutter/material.dart';
 
 class PeakConsumptionChart extends StatelessWidget {
@@ -12,34 +13,56 @@ class PeakConsumptionChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text('${data.maxConsumption.toStringAsFixed(0)} W'),
-            for (var i = _amountOfLegendItems - 1; i > 1; --i)
-              Expanded(
-                child: Center(
-                  child: Text('${((data.maxConsumption / _amountOfLegendItems) * i).toStringAsFixed(0)} W'),
+    return SimpleProviderWidget(
+      childBuilder: (context, theme, localization) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Watt',
+            style: theme.secondaryText.subtitle,
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      data.maxConsumption.toStringAsFixed(0),
+                      style: theme.secondaryText.body,
+                    ),
+                    for (var i = _amountOfLegendItems - 1; i > 1; --i)
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            ((data.maxConsumption / _amountOfLegendItems) * i).toStringAsFixed(0),
+                            style: theme.secondaryText.body,
+                          ),
+                        ),
+                      ),
+                    Text(
+                      data.minConsumption.toStringAsFixed(0),
+                      style: theme.secondaryText.body,
+                    ),
+                  ],
                 ),
-              ),
-            Text('${data.minConsumption.toStringAsFixed(0)} W'),
-          ],
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: LayoutBuilder(
-              builder: (context, constraints) => CustomPaint(
-                size: Size(constraints.maxWidth, constraints.maxHeight),
-                painter: _PeakConsumptionChartPainter(data),
-              ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: LayoutBuilder(
+                      builder: (context, constraints) => CustomPaint(
+                        size: Size(constraints.maxWidth, constraints.maxHeight),
+                        painter: _PeakConsumptionChartPainter(data),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
