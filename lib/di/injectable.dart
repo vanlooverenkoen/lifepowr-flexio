@@ -5,6 +5,9 @@ import 'package:injectable/injectable.dart';
 
 final getIt = GetIt.asNewInstance();
 
+const dummyHistoryService = 'dummy_history_service';
+const assetHistoryService = 'asset_history_service';
+
 @InjectableInit(
   initializerName: r'initGetIt',
   generateForDir: ['lib'],

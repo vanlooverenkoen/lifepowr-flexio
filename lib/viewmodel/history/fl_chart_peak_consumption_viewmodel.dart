@@ -2,47 +2,21 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flexio_kvl/model/history/history_consumption_data.dart';
-import 'package:flexio_kvl/repo/history/history_repository.dart';
-import 'package:flexio_kvl/util/logger/logger.dart';
+import 'package:flexio_kvl/viewmodel/history/peak_consumption_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 
 @injectable
-class PeakConsumptionViewModel with ChangeNotifier {
-  final HistoryRepository historyRepository;
-
+class FlChartPeakConsumptionViewModel extends PeakConsumptionViewModel {
   LineChartData? _lineChartData;
-
-  var _isLoading = true;
-
-  bool get isLoading => _isLoading && _lineChartData == null;
 
   LineChartData get lineChartData => _lineChartData!;
 
-  PeakConsumptionViewModel(this.historyRepository);
+  FlChartPeakConsumptionViewModel(super.historyRepository);
 
-  Future<void> init() async {
-    await _getData();
-  }
-
-  Future<void> onRefresh() => _getData();
-
-  Future<void> _getData() async {
-    try {
-      _isLoading = true;
-      notifyListeners();
-      final now = DateTime.now();
-      final data = await historyRepository.getHistory(now.subtract(const Duration(days: 7)), now);
-      await _getLineChartData(data);
-    } catch (e) {
-      FlexioLogger.log(e);
-    }
-    _isLoading = false;
-    notifyListeners();
-  }
-
-  Future<void> _getLineChartData(List<HistoryConsumptionItem> data) async {
+  @override
+  Future<void> processData(List<HistoryConsumptionItem> data) async {
     final something = <FlSpot>[];
     final consumptionLineChartData = <FlSpot>[];
     final yearlyLineChartData = <FlSpot>[];
@@ -54,14 +28,14 @@ class PeakConsumptionViewModel with ChangeNotifier {
     var index = 0.0;
     for (final item in data) {
       index++;
-      minX = min(minX, item.date.millisecondsSinceEpoch.toDouble());
-      maxY = max(maxY, item.date.millisecondsSinceEpoch.toDouble());
+      minX = min(minX, item.startDate.millisecondsSinceEpoch.toDouble());
+      maxY = max(maxY, item.startDate.millisecondsSinceEpoch.toDouble());
       minY = min(min(minY, item.consumption), min(item.monthlyPeakConsumption, item.yearlyPeakConsumption));
       maxX = max(max(maxX, item.consumption), max(item.monthlyPeakConsumption, item.yearlyPeakConsumption));
-      something.add(FlSpot(item.date.millisecondsSinceEpoch.toDouble(), index));
-      consumptionLineChartData.add(FlSpot(item.date.millisecondsSinceEpoch.toDouble(), item.consumption));
-      monthlyLineChartData.add(FlSpot(item.date.millisecondsSinceEpoch.toDouble(), item.monthlyPeakConsumption));
-      yearlyLineChartData.add(FlSpot(item.date.millisecondsSinceEpoch.toDouble(), item.yearlyPeakConsumption));
+      something.add(FlSpot(item.startDate.millisecondsSinceEpoch.toDouble(), index));
+      consumptionLineChartData.add(FlSpot(item.startDate.millisecondsSinceEpoch.toDouble(), item.consumption));
+      monthlyLineChartData.add(FlSpot(item.startDate.millisecondsSinceEpoch.toDouble(), item.monthlyPeakConsumption));
+      yearlyLineChartData.add(FlSpot(item.startDate.millisecondsSinceEpoch.toDouble(), item.yearlyPeakConsumption));
     }
     final dateFormat = DateFormat('dd/MM');
     _lineChartData = LineChartData(
@@ -99,12 +73,9 @@ class PeakConsumptionViewModel with ChangeNotifier {
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-            getTitlesWidget: (value, meta) => Transform.rotate(
-              angle: (90 * pi) / 180,
-              child: Text(
-                dateFormat.format(DateTime.fromMillisecondsSinceEpoch(value.toInt())),
-                style: const TextStyle(color: Colors.black, fontSize: 10),
-              ),
+            getTitlesWidget: (value, meta) => Text(
+              dateFormat.format(DateTime.fromMillisecondsSinceEpoch(value.toInt())),
+              style: const TextStyle(color: Colors.black, fontSize: 10),
             ),
           ),
         ),

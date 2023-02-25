@@ -1,0 +1,4 @@
+enum HistoryDataType {
+  dummy,
+  asset;
+}

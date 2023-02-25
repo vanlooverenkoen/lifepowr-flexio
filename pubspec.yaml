@@ -7,6 +7,7 @@ environment:
   sdk: '>=2.19.2 <3.0.0'
 
 dependencies:
+  csv: ^5.0.1
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -31,3 +32,4 @@ flutter:
   assets:
     - assets/locale/
     - assets/images/
+    - assets/data/
