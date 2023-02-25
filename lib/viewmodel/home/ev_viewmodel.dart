@@ -1,5 +1,5 @@
-import 'package:flexio_kvl/model/ev_charge_box.dart';
-import 'package:flexio_kvl/model/ev_charge_box_status.dart';
+import 'package:flexio_kvl/model/ev/ev_charge_box.dart';
+import 'package:flexio_kvl/model/ev/ev_charge_box_status.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 

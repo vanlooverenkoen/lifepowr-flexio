@@ -1,4 +1,5 @@
 import 'package:flexio_kvl/di/injectable.dart';
+import 'package:flexio_kvl/screen/history/fl_chart_peak_consumption_history_screen.dart';
 import 'package:flexio_kvl/viewmodel/history/history_viewmodel.dart';
 import 'package:flexio_kvl/widget/provider/provider.dart';
 import 'package:flexio_kvl/widget/simple_screen.dart';
@@ -15,7 +16,9 @@ class HistoryScreen extends StatelessWidget {
         consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => SimpleScreen(
           title: 'History',
           subtitle: 'View the history of your energy consumption',
-          body: Container(),
+          body: PeakConsumptionHistoryScreen(
+            key: UniqueKey(),
+          ),
         ),
       );
 }

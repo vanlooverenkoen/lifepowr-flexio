@@ -1,4 +1,4 @@
-import 'package:flexio_kvl/model/ev_charge_box.dart';
+import 'package:flexio_kvl/model/ev/ev_charge_box.dart';
 import 'package:flexio_kvl/theme/theme_dimens.dart';
 import 'package:flexio_kvl/widget/general/flexio_card.dart';
 import 'package:flexio_kvl/widget/provider/simple_provider.dart';
