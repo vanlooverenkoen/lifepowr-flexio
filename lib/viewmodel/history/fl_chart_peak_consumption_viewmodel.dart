@@ -5,7 +5,6 @@ import 'package:flexio_kvl/model/history/history_consumption_data.dart';
 import 'package:flexio_kvl/repo/history/history_repository.dart';
 import 'package:flexio_kvl/util/logger/logger.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 
