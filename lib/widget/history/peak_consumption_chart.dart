@@ -51,9 +51,12 @@ class PeakConsumptionChart extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: LayoutBuilder(
-                      builder: (context, constraints) => CustomPaint(
-                        size: Size(constraints.maxWidth, constraints.maxHeight),
-                        painter: _PeakConsumptionChartPainter(data),
+                      builder: (context, constraints) => ClipRect(
+                        child: CustomPaint(
+                          size: Size(constraints.maxWidth, constraints.maxHeight),
+                          isComplex: true,
+                          painter: _PeakConsumptionChartPainter(data),
+                        ),
                       ),
                     ),
                   ),

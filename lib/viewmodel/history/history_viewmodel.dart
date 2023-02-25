@@ -4,9 +4,17 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class HistoryViewModel with ChangeNotifier {
-  final _chartType = ChartType.customChart;
+  var _index = 0;
 
   HistoryViewModel();
 
-  ChartType get chartType => _chartType;
+  ChartType get chartType => ChartType.values[_index];
+
+  void onTapChartType() {
+    _index++;
+    if (_index >= ChartType.values.length) {
+      _index = 0;
+    }
+    notifyListeners();
+  }
 }

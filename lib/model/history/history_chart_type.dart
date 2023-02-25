@@ -1,4 +1,6 @@
 enum ChartType {
-  flChart,
-  customChart;
+  customChartAssets,
+  customChartDummy,
+  flChartAsset,
+  flChartDummy,
 }
