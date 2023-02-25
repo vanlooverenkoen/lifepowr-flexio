@@ -9,7 +9,7 @@ abstract class PeakConsumptionViewModel with ChangeNotifier {
 
   var _isLoading = true;
 
-  var _dataType = HistoryDataType.dummy;
+  var _dataType = HistoryDataType.asset;
 
   bool get isLoading => _isLoading;
 
