@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class HistoryViewModel with ChangeNotifier {
-  final _chartType = ChartType.flChart;
+  final _chartType = ChartType.customChart;
 
   HistoryViewModel();
 

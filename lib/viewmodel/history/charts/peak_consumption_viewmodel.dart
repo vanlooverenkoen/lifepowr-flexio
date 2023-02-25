@@ -1,4 +1,4 @@
-import 'package:flexio_kvl/model/history/history_consumption_data.dart';
+import 'package:flexio_kvl/model/history/history_consumption.dart';
 import 'package:flexio_kvl/model/history/history_data_type.dart';
 import 'package:flexio_kvl/repo/history/history_repository.dart';
 import 'package:flexio_kvl/util/logger/logger.dart';
@@ -34,7 +34,7 @@ abstract class PeakConsumptionViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> processData(List<HistoryConsumptionItem> data);
+  Future<void> processData(HistoryConsumption data);
 
   void onDataTypeChanged(HistoryDataType value) {
     if (_dataType == value) return;

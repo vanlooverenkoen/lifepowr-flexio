@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 
 @immutable
-class HistoryConsumptionItem {
+class HistoryConsumptionData {
   final DateTime startDate;
   final DateTime endDate;
   final double monthlyPeakConsumption;
   final double yearlyPeakConsumption;
   final double consumption;
 
-  const HistoryConsumptionItem({
+  const HistoryConsumptionData({
     required this.startDate,
     required this.endDate,
     required this.consumption,

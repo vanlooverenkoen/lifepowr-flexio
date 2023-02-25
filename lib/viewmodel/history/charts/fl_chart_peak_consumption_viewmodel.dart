@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flexio_kvl/model/history/history_consumption_data.dart';
-import 'package:flexio_kvl/viewmodel/history/peak_consumption_viewmodel.dart';
+import 'package:flexio_kvl/model/history/history_consumption.dart';
+import 'package:flexio_kvl/viewmodel/history/charts/peak_consumption_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
@@ -16,7 +16,7 @@ class FlChartPeakConsumptionViewModel extends PeakConsumptionViewModel {
   FlChartPeakConsumptionViewModel(super.historyRepository);
 
   @override
-  Future<void> processData(List<HistoryConsumptionItem> data) async {
+  Future<void> processData(HistoryConsumption data) async {
     final something = <FlSpot>[];
     final consumptionLineChartData = <FlSpot>[];
     final yearlyLineChartData = <FlSpot>[];
@@ -26,7 +26,8 @@ class FlChartPeakConsumptionViewModel extends PeakConsumptionViewModel {
     var maxX = 0.0;
     var maxY = 0.0;
     var index = 0.0;
-    for (final item in data) {
+    final items = data.data;
+    for (final item in items) {
       index++;
       minX = min(minX, item.startDate.millisecondsSinceEpoch.toDouble());
       maxY = max(maxY, item.startDate.millisecondsSinceEpoch.toDouble());
