@@ -9,6 +9,8 @@ void main() {
     25-05-2022;00:00:00;25-05-2022;00:15:00;="541448820052632233";1SAG1100336389;Digitale Meter;Afname Nacht;;kWh;Gevalideerd
     25-05-2022;00:00:00;25-05-2022;00:15:00;="541448820052632233";1SAG1100336389;Digitale Meter;Afname Nacht;0,032;kWh;Gevalideerd''';
     final data = await sut.parseCsv(text);
-    expect(data.length, 1);
+    expect(data.data.length, 1);
+    expect(data.maxConsumption, 1);
+    expect(data.minConsumption, 1);
   });
 }

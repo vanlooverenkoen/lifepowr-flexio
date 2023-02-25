@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flexio_kvl/di/injectable.dart';
+import 'package:flexio_kvl/model/history/history_consumption.dart';
 import 'package:flexio_kvl/model/history/history_consumption_data.dart';
 import 'package:flexio_kvl/service/history/history_service.dart';
+import 'package:flexio_kvl/theme/theme_durations.dart';
 import 'package:injectable/injectable.dart';
 
 @Named(dummyHistoryService)
@@ -15,11 +17,11 @@ class HistoryDummyService extends HistoryService {
   static const _amountOfSpikes = 10;
   static const _spikesStartingAt = 1500;
   static const _spikeConsumption = 5000.0;
-  static const _randomOffset = -1000.0;
 
   @override
-  Future<List<HistoryConsumptionItem>> getHistory() async {
-    final history = <HistoryConsumptionItem>[];
+  Future<HistoryConsumption> getHistory() async {
+    await Future<void>.delayed(ThemeDurations.demoApiDuration);
+    final history = <HistoryConsumptionData>[];
     var monthlyPeakConsumption = 0.0;
     var yearlyPeakConsumption = _startingYearlyConsumption;
     var date = DateTime.now();
@@ -34,11 +36,11 @@ class HistoryDummyService extends HistoryService {
       } else if (spikes.contains(i)) {
         consumption = _spikeConsumption;
       } else {
-        consumption = random.nextInt(_defaultMaxNextInt) + _randomOffset;
+        consumption = random.nextInt(_defaultMaxNextInt).toDouble();
       }
       monthlyPeakConsumption = max(monthlyPeakConsumption, consumption);
       yearlyPeakConsumption = max(monthlyPeakConsumption, yearlyPeakConsumption);
-      history.add(HistoryConsumptionItem(
+      history.add(HistoryConsumptionData(
         startDate: startDate,
         endDate: date,
         consumption: consumption,
@@ -46,6 +48,10 @@ class HistoryDummyService extends HistoryService {
         yearlyPeakConsumption: yearlyPeakConsumption,
       ));
     }
-    return history;
+    return HistoryConsumption(
+      data: history,
+      minConsumption: 0,
+      maxConsumption: yearlyPeakConsumption,
+    );
   }
 }

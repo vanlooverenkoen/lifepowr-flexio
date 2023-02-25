@@ -1,5 +1,5 @@
-import 'package:flexio_kvl/model/history/history_consumption_data.dart';
+import 'package:flexio_kvl/model/history/history_consumption.dart';
 
 abstract class HistoryService {
-  Future<List<HistoryConsumptionItem>> getHistory();
+  Future<HistoryConsumption> getHistory();
 }

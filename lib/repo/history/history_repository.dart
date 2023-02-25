@@ -1,5 +1,5 @@
 import 'package:flexio_kvl/di/injectable.dart';
-import 'package:flexio_kvl/model/history/history_consumption_data.dart';
+import 'package:flexio_kvl/model/history/history_consumption.dart';
 import 'package:flexio_kvl/model/history/history_data_type.dart';
 import 'package:flexio_kvl/service/history/history_service.dart';
 import 'package:injectable/injectable.dart';
@@ -12,7 +12,7 @@ abstract class HistoryRepository {
     @Named(assetHistoryService) HistoryService assetHistoryService,
   ) = _HistoryRepository;
 
-  Future<List<HistoryConsumptionItem>> getPeakConsumptionData({HistoryDataType dataType = HistoryDataType.dummy});
+  Future<HistoryConsumption> getPeakConsumptionData({HistoryDataType dataType = HistoryDataType.dummy});
 }
 
 class _HistoryRepository implements HistoryRepository {
@@ -25,7 +25,7 @@ class _HistoryRepository implements HistoryRepository {
   );
 
   @override
-  Future<List<HistoryConsumptionItem>> getPeakConsumptionData({HistoryDataType dataType = HistoryDataType.dummy}) async {
+  Future<HistoryConsumption> getPeakConsumptionData({HistoryDataType dataType = HistoryDataType.dummy}) async {
     if (dataType == HistoryDataType.dummy) return _dummyService.getHistory();
     return _assetHistoryService.getHistory();
   }

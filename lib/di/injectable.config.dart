@@ -10,9 +10,9 @@ import 'package:flexio_kvl/service/history/history_asset_service.dart' as _i7;
 import 'package:flexio_kvl/service/history/history_dummy_service.dart' as _i6;
 import 'package:flexio_kvl/service/history/history_service.dart' as _i5;
 import 'package:flexio_kvl/viewmodel/global/global_viewmodel.dart' as _i4;
-import 'package:flexio_kvl/viewmodel/history/custom_chart_peak_consumption_viewmodel.dart'
+import 'package:flexio_kvl/viewmodel/history/charts/custom_chart_peak_consumption_viewmodel.dart'
     as _i14;
-import 'package:flexio_kvl/viewmodel/history/fl_chart_peak_consumption_viewmodel.dart'
+import 'package:flexio_kvl/viewmodel/history/charts/fl_chart_peak_consumption_viewmodel.dart'
     as _i15;
 import 'package:flexio_kvl/viewmodel/history/history_viewmodel.dart' as _i8;
 import 'package:flexio_kvl/viewmodel/home/ev_viewmodel.dart' as _i3;

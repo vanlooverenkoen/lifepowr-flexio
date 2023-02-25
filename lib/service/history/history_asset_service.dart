@@ -1,9 +1,11 @@
 import 'dart:math';
 
 import 'package:flexio_kvl/di/injectable.dart';
+import 'package:flexio_kvl/model/history/history_consumption.dart';
 import 'package:flexio_kvl/model/history/history_consumption_data.dart';
 import 'package:flexio_kvl/service/history/history_service.dart';
 import 'package:flexio_kvl/theme/theme_assets.dart';
+import 'package:flexio_kvl/theme/theme_durations.dart';
 import 'package:flexio_kvl/util/logger/logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -16,20 +18,23 @@ class HistoryAssetService extends HistoryService {
   static const kwhFactor = 4;
   static const wattFactor = 1000;
   static const _startingYearlyConsumption = 4500.0;
-  List<HistoryConsumptionItem>? cache;
+  HistoryConsumption? cache;
 
   @override
-  Future<List<HistoryConsumptionItem>> getHistory() async {
+  Future<HistoryConsumption> getHistory() async {
     final cache = this.cache;
-    if (cache != null) return cache;
+    if (cache != null) {
+      await Future<void>.delayed(ThemeDurations.demoApiDuration);
+      return cache;
+    }
     final text = await rootBundle.loadString(ThemeAssets.historyCsv);
     final result = await compute(parseCsv, text);
     this.cache = result;
     return result;
   }
 
-  Future<List<HistoryConsumptionItem>> parseCsv(String text) async {
-    final history = <HistoryConsumptionItem>[];
+  Future<HistoryConsumption> parseCsv(String text) async {
+    final history = <HistoryConsumptionData>[];
     var monthlyPeakConsumption = 0.0;
     var yearlyPeakConsumption = _startingYearlyConsumption;
     final trimmedText = text.trim();
@@ -53,7 +58,7 @@ class HistoryAssetService extends HistoryService {
         if (type != 'Gevalideerd') continue;
         monthlyPeakConsumption = max(monthlyPeakConsumption, consumption);
         yearlyPeakConsumption = max(monthlyPeakConsumption, yearlyPeakConsumption);
-        history.add(HistoryConsumptionItem(
+        history.add(HistoryConsumptionData(
           startDate: startDateTime,
           endDate: endDateTime,
           consumption: consumption,
@@ -64,7 +69,10 @@ class HistoryAssetService extends HistoryService {
         FlexioLogger.log('Failed to parse line: $trimmedLine\n\n$e');
       }
     }
-
-    return history;
+    return HistoryConsumption(
+      data: history,
+      minConsumption: 0,
+      maxConsumption: yearlyPeakConsumption,
+    );
   }
 }
