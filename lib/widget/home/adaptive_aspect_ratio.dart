@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/widgets.dart';
 
 class AdaptiveRatio extends StatelessWidget {
@@ -10,6 +12,7 @@ class AdaptiveRatio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (Platform.isAndroid || Platform.isIOS) return child;
     return LayoutBuilder(
       builder: (context, constraints) {
         var aspectRatio = 16 / 9;
@@ -18,8 +21,6 @@ class AdaptiveRatio extends StatelessWidget {
           aspectRatio = 16 / 4;
         } else if (width >= 1500) {
           aspectRatio = 16 / 6;
-        } else if (width >= 100) {
-          aspectRatio = 16 / 8;
         }
         return AspectRatio(
           aspectRatio: aspectRatio,
