@@ -1,8 +1,8 @@
 import 'package:flexio_kvl/di/injectable.dart';
-import 'package:flexio_kvl/screen/home/home_screen.dart';
+import 'package:flexio_kvl/screen/main_screen.dart';
 import 'package:flexio_kvl/util/locale/localization_delegate.dart';
 import 'package:flexio_kvl/viewmodel/global/global_viewmodel.dart';
-import 'package:flexio_kvl/widget/provider.dart';
+import 'package:flexio_kvl/widget/provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -23,7 +23,7 @@ class FlexioApp extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-        home: const MyHomePage(),
+        home: const MainScreen(),
       ),
     );
   }
