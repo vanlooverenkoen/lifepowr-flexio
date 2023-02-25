@@ -2,9 +2,6 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flexio_kvl/model/history/history_consumption_data.dart';
-import 'package:flexio_kvl/model/history/history_data_type.dart';
-import 'package:flexio_kvl/repo/history/history_repository.dart';
-import 'package:flexio_kvl/util/logger/logger.dart';
 import 'package:flexio_kvl/viewmodel/history/peak_consumption_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
@@ -31,14 +28,14 @@ class FlChartPeakConsumptionViewModel extends PeakConsumptionViewModel {
     var index = 0.0;
     for (final item in data) {
       index++;
-      minX = min(minX, item.date.millisecondsSinceEpoch.toDouble());
-      maxY = max(maxY, item.date.millisecondsSinceEpoch.toDouble());
+      minX = min(minX, item.startDate.millisecondsSinceEpoch.toDouble());
+      maxY = max(maxY, item.startDate.millisecondsSinceEpoch.toDouble());
       minY = min(min(minY, item.consumption), min(item.monthlyPeakConsumption, item.yearlyPeakConsumption));
       maxX = max(max(maxX, item.consumption), max(item.monthlyPeakConsumption, item.yearlyPeakConsumption));
-      something.add(FlSpot(item.date.millisecondsSinceEpoch.toDouble(), index));
-      consumptionLineChartData.add(FlSpot(item.date.millisecondsSinceEpoch.toDouble(), item.consumption));
-      monthlyLineChartData.add(FlSpot(item.date.millisecondsSinceEpoch.toDouble(), item.monthlyPeakConsumption));
-      yearlyLineChartData.add(FlSpot(item.date.millisecondsSinceEpoch.toDouble(), item.yearlyPeakConsumption));
+      something.add(FlSpot(item.startDate.millisecondsSinceEpoch.toDouble(), index));
+      consumptionLineChartData.add(FlSpot(item.startDate.millisecondsSinceEpoch.toDouble(), item.consumption));
+      monthlyLineChartData.add(FlSpot(item.startDate.millisecondsSinceEpoch.toDouble(), item.monthlyPeakConsumption));
+      yearlyLineChartData.add(FlSpot(item.startDate.millisecondsSinceEpoch.toDouble(), item.yearlyPeakConsumption));
     }
     final dateFormat = DateFormat('dd/MM');
     _lineChartData = LineChartData(

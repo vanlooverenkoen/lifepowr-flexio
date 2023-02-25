@@ -26,6 +26,7 @@ class HistoryDummyService extends HistoryService {
     final random = Random();
     final spikes = List.generate(_amountOfSpikes, (index) => Random().nextInt(_amountOfDataPoints - _spikesStartingAt) + _spikesStartingAt);
     for (var i = 0; i < _amountOfDataPoints; ++i) {
+      final startDate = date;
       date = date.add(const Duration(minutes: 15));
       double consumption;
       if (i > 500 && i < 1000) {
@@ -38,7 +39,8 @@ class HistoryDummyService extends HistoryService {
       monthlyPeakConsumption = max(monthlyPeakConsumption, consumption);
       yearlyPeakConsumption = max(monthlyPeakConsumption, yearlyPeakConsumption);
       history.add(HistoryConsumptionItem(
-        date: date,
+        startDate: startDate,
+        endDate: date,
         consumption: consumption,
         monthlyPeakConsumption: monthlyPeakConsumption,
         yearlyPeakConsumption: yearlyPeakConsumption,

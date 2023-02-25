@@ -4,6 +4,7 @@ import 'package:flexio_kvl/di/injectable.dart';
 import 'package:flexio_kvl/model/history/history_consumption_data.dart';
 import 'package:flexio_kvl/service/history/history_service.dart';
 import 'package:flexio_kvl/theme/theme_assets.dart';
+import 'package:flexio_kvl/util/logger/logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
@@ -45,7 +46,6 @@ class HistoryAssetService extends HistoryService {
         final endDate = rows[2];
         final endTime = rows[3];
         final endDateTime = dateFormatter.parse('$endDate $endTime');
-        final registerType = rows[7];
         final volume = double.tryParse(rows[8].replaceAll(',', '.'));
         if (volume == null) continue;
         final consumption = volume * kwhFactor * wattFactor;
@@ -54,13 +54,14 @@ class HistoryAssetService extends HistoryService {
         monthlyPeakConsumption = max(monthlyPeakConsumption, consumption);
         yearlyPeakConsumption = max(monthlyPeakConsumption, yearlyPeakConsumption);
         history.add(HistoryConsumptionItem(
-          date: startDateTime,
+          startDate: startDateTime,
+          endDate: endDateTime,
           consumption: consumption,
           monthlyPeakConsumption: monthlyPeakConsumption,
           yearlyPeakConsumption: yearlyPeakConsumption,
         ));
       } catch (e) {
-        print('Error parsing line: $trimmedLine');
+        FlexioLogger.log('Failed to parse line: $trimmedLine\n\n$e');
       }
     }
 
