@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 
 abstract class PeakConsumptionViewModel with ChangeNotifier {
   final HistoryRepository historyRepository;
-
+  var _disposed = false;
   var _isLoading = true;
 
-  var _dataType = HistoryDataType.asset;
+  late HistoryDataType _dataType;
 
   bool get isLoading => _isLoading;
 
@@ -17,8 +17,15 @@ abstract class PeakConsumptionViewModel with ChangeNotifier {
 
   PeakConsumptionViewModel(this.historyRepository);
 
-  Future<void> init() async {
+  Future<void> init(HistoryDataType dataType) async {
+    _dataType = dataType;
     await _getData();
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 
   Future<void> _getData() async {
@@ -26,20 +33,15 @@ abstract class PeakConsumptionViewModel with ChangeNotifier {
       _isLoading = true;
       notifyListeners();
       final data = await historyRepository.getPeakConsumptionData(dataType: _dataType);
+      if (_disposed) return;
       await processData(data);
     } catch (e) {
       FlexioLogger.log(e);
     }
+    if (_disposed) return;
     _isLoading = false;
     notifyListeners();
   }
 
   Future<void> processData(HistoryConsumption data);
-
-  void onDataTypeChanged(HistoryDataType value) {
-    if (_dataType == value) return;
-    _dataType = value;
-    notifyListeners();
-    _getData();
-  }
 }
