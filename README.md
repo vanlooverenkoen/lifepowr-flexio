@@ -2,29 +2,30 @@
 
 An application to see peak consumption in the MyFlexio App
 
-## Assumptions
+## Assumptions (Chart is calculated that this is always the case)
 
-- Data is always returned in 15 min intervals. (Chart is calculated that this is always the case)
-- Data is always returned in ascending order. (Chart is calculated that this is always the case)
-- Data is always returned in the same timezone as the user. (Chart is calculated that this is always the case)
-- Data is always returned in the same timezone as the user. (Chart is calculated that this is always the case)
+- Data is always returned in 15 min intervals.
+- Data is always returned in correct order.
+- Data is always returned in the same timezone as the user.
 
 ## Running the application
 
 You can just use flutter stable.
 Normally I would be using fvm for better version management. But to keep it as simple as possible I did not use it
 
-Remarks:
+web demo: [https://vanlooverenkoen.be/flexio](https://vanlooverenkoen.be/flexio)
 
+## Remarks:
+
+- Current implementation was done for phone. No tablet or web support. (only small improvements on web)
 - I did not use SVG's to keep it simple, but I would normally use SVG's for icons.
 - The home page is recreated from the images in the playstore. The charts are just images. But I wanted to make it a more complete application.
+- I would do a lot more testing. But I did not have time to do it, gave some examples on what is important to do. (golden tests, widget tests, integration tests)
+- I would use GetX to do navigation. But to keep it simple I used simple navigators. To keep the viewmodels clean
 
 ## Questions:
 
-### We use our own APIs to show data and show and change (iot device) settings in our Mobile
-    App MyFlexiO. API changes are always additive, and additions shouldn’t lead to breaking
-    any functionality in the Mobile app. How could you ensure in a Flutter app that additive
-    changes to an API don’t cause errors?
+### We use our own APIs to show data and show and change (iot device) settings in our Mobile App MyFlexiO. API changes are always additive, and additions shouldn’t lead to breaking any functionality in the Mobile app. How could you ensure in a Flutter app that additive changes to an API don’t cause errors?
 
 Versioning of the API is the key. You can use a version number in the url or in the header. The app will only have actively used api calls in the webservice in the app.
 But when an app update is released other users with other versions of the app can still use the app.

@@ -18,6 +18,7 @@ dependencies:
   injectable: ^2.1.0
   icapps_architecture: ^0.8.1
   sprintf: ^7.0.0
+  universal_io: ^2.2.0
 
 dev_dependencies:
   build_runner: ^2.3.3
