@@ -1,4 +1,5 @@
 import 'package:flexio_kvl/di/injectable.dart';
+import 'package:flexio_kvl/screen/history/history_detail_screen.dart';
 import 'package:flexio_kvl/viewmodel/history/monthly_history_viewmodel.dart';
 import 'package:flexio_kvl/widget/general/flexio_loading.dart';
 import 'package:flexio_kvl/widget/history/monthly_overview/monthly_peak_list_item.dart';
@@ -6,14 +7,19 @@ import 'package:flexio_kvl/widget/history/monthly_overview/yearly_peak_list_item
 import 'package:flexio_kvl/widget/provider/provider.dart';
 import 'package:flutter/material.dart';
 
-class MonthlyHistoryScreen extends StatelessWidget {
+class MonthlyHistoryScreen extends StatefulWidget {
   const MonthlyHistoryScreen({
     super.key,
   });
 
   @override
+  State<MonthlyHistoryScreen> createState() => _MonthlyHistoryScreenState();
+}
+
+class _MonthlyHistoryScreenState extends State<MonthlyHistoryScreen> implements MonthlyNavigator {
+  @override
   Widget build(BuildContext context) => ProviderWidget<MonthlyHistoryViewModel>(
-        create: () => getIt()..init(),
+        create: () => getIt()..init(this),
         consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) {
           if (viewModel.isLoading) return const Center(child: FlexioLoading());
           return ListView.separated(
@@ -44,4 +50,7 @@ class MonthlyHistoryScreen extends StatelessWidget {
           );
         },
       );
+
+  @override
+  void goToHistoryDetail({int? month}) => Navigator.push(context, MaterialPageRoute<void>(builder: (context) => HistoryDetailScreen(month: month)));
 }

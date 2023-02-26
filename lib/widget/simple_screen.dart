@@ -1,10 +1,14 @@
+import 'package:flexio_kvl/theme/theme_dimens.dart';
 import 'package:flexio_kvl/widget/general/status_bar/status_bar.dart';
+import 'package:flexio_kvl/widget/general/touch_feedback/touch_feedback.dart';
 import 'package:flexio_kvl/widget/provider/simple_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 
 class SimpleScreen extends StatelessWidget {
   final String title;
   final String subtitle;
+  final bool canGoBack;
   final Widget body;
   final Widget? bottomNavigationBar;
 
@@ -13,6 +17,7 @@ class SimpleScreen extends StatelessWidget {
     required this.subtitle,
     required this.body,
     this.bottomNavigationBar,
+    this.canGoBack = false,
     super.key,
   });
 
@@ -31,25 +36,46 @@ class SimpleScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          title,
-                          style: theme.primaryText.subtitle,
-                        ),
-                        const SizedBox(height: 8),
                         Row(
                           children: [
+                            if (canGoBack) ...[
+                              TouchFeedback(
+                                borderRadius: BorderRadius.circular(ThemeDimens.circularRadius),
+                                onTap: () => Navigator.of(context).pop(),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8),
+                                  child: Icon(
+                                    context.isIOSTheme ? Icons.arrow_back_ios_new : Icons.arrow_back,
+                                    color: theme.colors.textSubtle,
+                                  ),
+                                ),
+                              ),
+                            ],
                             Expanded(
                               child: Text(
-                                'Casa Koen',
-                                style: theme.defaultText.title,
+                                title,
+                                style: theme.primaryText.subtitle,
                               ),
-                            ),
-                            Icon(
-                              Icons.keyboard_arrow_down_rounded,
-                              color: theme.defaultText.title.color,
                             ),
                           ],
                         ),
+                        const SizedBox(height: 8),
+                        if (!canGoBack) ...[
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Casa Koen',
+                                  style: theme.defaultText.title,
+                                ),
+                              ),
+                              Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color: theme.defaultText.title.color,
+                              ),
+                            ],
+                          ),
+                        ],
                         const SizedBox(height: 8),
                         Text(
                           subtitle,

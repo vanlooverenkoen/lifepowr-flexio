@@ -1,1 +1,62 @@
-[{"month":1,"peakDateTimeStart":"2023-01-03T01:00:00.000","peakDateTimeEnd":"2023-01-03T01:15:00.000","peakConsumption":1.222},{"month":2,"peakDateTimeStart":"2023-02-10T00:45:00.000","peakDateTimeEnd":"2023-02-10T01:00:00.000","peakConsumption":0.789},{"month":5,"peakDateTimeStart":"2022-05-29T13:15:00.000","peakDateTimeEnd":"2022-05-29T13:30:00.000","peakConsumption":0.751},{"month":6,"peakDateTimeStart":"2022-06-06T12:45:00.000","peakDateTimeEnd":"2022-06-06T13:00:00.000","peakConsumption":1.076},{"month":7,"peakDateTimeStart":"2022-07-06T18:45:00.000","peakDateTimeEnd":"2022-07-06T19:00:00.000","peakConsumption":1.084},{"month":8,"peakDateTimeStart":"2022-08-08T13:00:00.000","peakDateTimeEnd":"2022-08-08T13:15:00.000","peakConsumption":1.154},{"month":9,"peakDateTimeStart":"2022-09-15T19:15:00.000","peakDateTimeEnd":"2022-09-15T19:30:00.000","peakConsumption":1.031},{"month":10,"peakDateTimeStart":"2022-10-18T18:00:00.000","peakDateTimeEnd":"2022-10-18T18:15:00.000","peakConsumption":1.011},{"month":11,"peakDateTimeStart":"2022-11-20T19:30:00.000","peakDateTimeEnd":"2022-11-20T19:45:00.000","peakConsumption":2.232},{"month":12,"peakDateTimeStart":"2022-12-04T20:30:00.000","peakDateTimeEnd":"2022-12-04T20:45:00.000","peakConsumption":1.92}]
+[
+  {
+    "month": 1,
+    "peakDateTimeStart": "2023-01-03T01:00:00.000",
+    "peakDateTimeEnd": "2023-01-03T01:15:00.000",
+    "peakConsumption": 1.222
+  },
+  {
+    "month": 2,
+    "peakDateTimeStart": "2023-02-10T00:45:00.000",
+    "peakDateTimeEnd": "2023-02-10T01:00:00.000",
+    "peakConsumption": 0.789
+  },
+  {
+    "month": 5,
+    "peakDateTimeStart": "2022-05-29T13:15:00.000",
+    "peakDateTimeEnd": "2022-05-29T13:30:00.000",
+    "peakConsumption": 0.751
+  },
+  {
+    "month": 6,
+    "peakDateTimeStart": "2022-06-06T12:45:00.000",
+    "peakDateTimeEnd": "2022-06-06T13:00:00.000",
+    "peakConsumption": 1.076
+  },
+  {
+    "month": 7,
+    "peakDateTimeStart": "2022-07-06T18:45:00.000",
+    "peakDateTimeEnd": "2022-07-06T19:00:00.000",
+    "peakConsumption": 1.084
+  },
+  {
+    "month": 8,
+    "peakDateTimeStart": "2022-08-08T13:00:00.000",
+    "peakDateTimeEnd": "2022-08-08T13:15:00.000",
+    "peakConsumption": 1.154
+  },
+  {
+    "month": 9,
+    "peakDateTimeStart": "2022-09-15T19:15:00.000",
+    "peakDateTimeEnd": "2022-09-15T19:30:00.000",
+    "peakConsumption": 1.031
+  },
+  {
+    "month": 10,
+    "peakDateTimeStart": "2022-10-18T18:00:00.000",
+    "peakDateTimeEnd": "2022-10-18T18:15:00.000",
+    "peakConsumption": 1.011
+  },
+  {
+    "month": 11,
+    "peakDateTimeStart": "2022-11-20T19:30:00.000",
+    "peakDateTimeEnd": "2022-11-20T19:45:00.000",
+    "peakConsumption": 2.232
+  },
+  {
+    "month": 12,
+    "peakDateTimeStart": "2022-12-04T20:30:00.000",
+    "peakDateTimeEnd": "2022-12-04T20:45:00.000",
+    "peakConsumption": 1.92
+  }
+]

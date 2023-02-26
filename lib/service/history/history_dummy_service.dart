@@ -20,7 +20,7 @@ class HistoryDummyService extends HistoryService {
   static const _spikeConsumption = 5000.0;
 
   @override
-  Future<HistoryConsumption> getHistory() async {
+  Future<HistoryConsumption> getHistory(int? month) async {
     await Future<void>.delayed(ThemeDurations.demoApiDuration);
     final history = <HistoryConsumptionData>[];
     var monthlyPeakConsumption = 0.0;

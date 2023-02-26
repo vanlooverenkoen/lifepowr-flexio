@@ -13,7 +13,10 @@ abstract class HistoryRepository {
     @Named(assetHistoryService) HistoryService assetHistoryService,
   ) = _HistoryRepository;
 
-  Future<HistoryConsumption> getPeakConsumptionData({HistoryDataType dataType = HistoryDataType.dummy});
+  Future<HistoryConsumption> getPeakConsumptionData({
+    required int? month,
+    HistoryDataType dataType = HistoryDataType.dummy,
+  });
 
   Future<List<MonthlyHistoryData>> getMonthlyPeakConsumptionData();
 }
@@ -28,9 +31,12 @@ class _HistoryRepository implements HistoryRepository {
   );
 
   @override
-  Future<HistoryConsumption> getPeakConsumptionData({HistoryDataType dataType = HistoryDataType.dummy}) async {
-    if (dataType == HistoryDataType.dummy) return _dummyService.getHistory();
-    return _assetHistoryService.getHistory();
+  Future<HistoryConsumption> getPeakConsumptionData({
+    required int? month,
+    HistoryDataType dataType = HistoryDataType.dummy,
+  }) async {
+    if (dataType == HistoryDataType.dummy) return _dummyService.getHistory(month);
+    return _assetHistoryService.getHistory(month);
   }
 
   @override

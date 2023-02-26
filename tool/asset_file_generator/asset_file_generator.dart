@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flexio_kvl/model/history/monthly_overview_data.dart';
+import 'package:flexio_kvl/model/history/peak_coonsumption_data.dart';
 import 'package:intl/intl.dart';
 
 void main() {
@@ -61,31 +62,15 @@ void main() {
   final monthlyJsonString = jsonEncode(monthlyHistory);
   assetMonthlyOverviewFile.writeAsStringSync(monthlyJsonString);
 
-  final historyJsonString = jsonEncode(historyData);
+  final sortedHistoryData = historyData..sort((e1, e2) => e1.startDate.compareTo(e2.startDate));
+
+  final historyJsonString = jsonEncode(sortedHistoryData);
   assetHistoryAllFile.writeAsStringSync(historyJsonString);
   print('Added $index data points from the original ${lines.length} lines.');
   for (final month in months.keys) {
     final assetMonthlyFile = File('assets/data/history_month_$month.json');
-    final monthlyData = historyData.where((element) => element.startDate.month == month).toList();
+    final monthlyData = sortedHistoryData.where((element) => element.startDate.month == month).toList();
     final monthlyHistoryJsonString = jsonEncode(monthlyData);
     assetMonthlyFile.writeAsStringSync(monthlyHistoryJsonString);
   }
-}
-
-class PeakConsumptionData {
-  final DateTime startDate;
-  final DateTime endDate;
-  final double consumption;
-
-  PeakConsumptionData({
-    required this.startDate,
-    required this.endDate,
-    required this.consumption,
-  });
-
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'startDate': startDate.toIso8601String(),
-        'endDate': endDate.toIso8601String(),
-        'consumption': consumption,
-      };
 }

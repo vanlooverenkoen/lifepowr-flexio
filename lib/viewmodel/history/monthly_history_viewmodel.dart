@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 @injectable
 class MonthlyHistoryViewModel with ChangeNotifier {
   final HistoryRepository historyRepository;
+  late final MonthlyNavigator _monthlyNavigator;
   var _disposed = false;
   var _isLoading = true;
 
@@ -19,9 +20,12 @@ class MonthlyHistoryViewModel with ChangeNotifier {
 
   List<MonthlyHistoryData> get monthlyPeakConsumptionData => _monthlyPeakConsumptionData!;
 
-  MonthlyHistoryViewModel(this.historyRepository);
+  MonthlyHistoryViewModel(
+    this.historyRepository,
+  );
 
-  Future<void> init() async {
+  Future<void> init(MonthlyNavigator monthlyNavigator) async {
+    _monthlyNavigator = monthlyNavigator;
     await _getData();
   }
 
@@ -49,7 +53,11 @@ class MonthlyHistoryViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void onYearlyPeakTapped() {}
+  void onYearlyPeakTapped() => _monthlyNavigator.goToHistoryDetail();
 
-  void onMonthlyPeakTapped(MonthlyHistoryData item) {}
+  void onMonthlyPeakTapped(MonthlyHistoryData item) => _monthlyNavigator.goToHistoryDetail(month: item.peakDateTimeStart.month);
+}
+
+abstract class MonthlyNavigator {
+  void goToHistoryDetail({int? month});
 }
