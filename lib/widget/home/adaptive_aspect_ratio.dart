@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/widgets.dart';
+import 'package:universal_io/io.dart';
 
 class AdaptiveRatio extends StatelessWidget {
   final Widget child;
