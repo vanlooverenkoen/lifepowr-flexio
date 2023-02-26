@@ -17,6 +17,7 @@ web demo: [https://vanlooverenkoen.be/flexio](https://vanlooverenkoen.be/flexio)
 
 ## Remarks:
 
+- Current implementation was done for phone. No tablet or web support. (only small improvements on web)
 - I did not use SVG's to keep it simple, but I would normally use SVG's for icons.
 - The home page is recreated from the images in the playstore. The charts are just images. But I wanted to make it a more complete application.
 - I would do a lot more testing. But I did not have time to do it, gave some examples on what is important to do. (golden tests, widget tests, integration tests)
