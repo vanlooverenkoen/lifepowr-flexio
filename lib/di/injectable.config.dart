@@ -11,10 +11,12 @@ import 'package:flexio_kvl/service/history/history_dummy_service.dart' as _i6;
 import 'package:flexio_kvl/service/history/history_service.dart' as _i5;
 import 'package:flexio_kvl/viewmodel/global/global_viewmodel.dart' as _i4;
 import 'package:flexio_kvl/viewmodel/history/charts/custom_chart_peak_consumption_viewmodel.dart'
-    as _i14;
-import 'package:flexio_kvl/viewmodel/history/charts/fl_chart_peak_consumption_viewmodel.dart'
     as _i15;
+import 'package:flexio_kvl/viewmodel/history/charts/fl_chart_peak_consumption_viewmodel.dart'
+    as _i16;
 import 'package:flexio_kvl/viewmodel/history/history_viewmodel.dart' as _i8;
+import 'package:flexio_kvl/viewmodel/history/monthly_history_viewmodel.dart'
+    as _i14;
 import 'package:flexio_kvl/viewmodel/home/ev_viewmodel.dart' as _i3;
 import 'package:flexio_kvl/viewmodel/home/home_viewmodel.dart' as _i9;
 import 'package:flexio_kvl/viewmodel/home/real_time_viewmodel.dart' as _i11;
@@ -55,10 +57,12 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i5.HistoryService>(instanceName: 'dummy_history_service'),
           gh<_i5.HistoryService>(instanceName: 'asset_history_service'),
         ));
-    gh.factory<_i14.CustomChartPeakConsumptionViewModel>(() =>
-        _i14.CustomChartPeakConsumptionViewModel(gh<_i13.HistoryRepository>()));
-    gh.factory<_i15.FlChartPeakConsumptionViewModel>(() =>
-        _i15.FlChartPeakConsumptionViewModel(gh<_i13.HistoryRepository>()));
+    gh.factory<_i14.MonthlyHistoryViewModel>(
+        () => _i14.MonthlyHistoryViewModel(gh<_i13.HistoryRepository>()));
+    gh.factory<_i15.CustomChartPeakConsumptionViewModel>(() =>
+        _i15.CustomChartPeakConsumptionViewModel(gh<_i13.HistoryRepository>()));
+    gh.factory<_i16.FlChartPeakConsumptionViewModel>(() =>
+        _i16.FlChartPeakConsumptionViewModel(gh<_i13.HistoryRepository>()));
     return this;
   }
 }

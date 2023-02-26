@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flexio_kvl/di/injectable.dart';
 import 'package:flexio_kvl/model/history/history_consumption.dart';
 import 'package:flexio_kvl/model/history/history_consumption_data.dart';
+import 'package:flexio_kvl/model/history/monthly_overview_data.dart';
 import 'package:flexio_kvl/service/history/history_service.dart';
 import 'package:flexio_kvl/theme/theme_assets.dart';
 import 'package:flexio_kvl/theme/theme_durations.dart';
@@ -27,6 +29,7 @@ class HistoryAssetService extends HistoryService {
       await Future<void>.delayed(ThemeDurations.demoApiDuration);
       return cache;
     }
+
     final text = await rootBundle.loadString(ThemeAssets.historyAllCsv);
     final result = await compute(parseCsv, text);
     this.cache = result;
@@ -70,5 +73,12 @@ class HistoryAssetService extends HistoryService {
       minConsumption: 0,
       maxConsumption: yearlyPeakConsumption,
     );
+  }
+
+  @override
+  Future<List<MonthlyHistoryData>> getMonthlyHistory() async {
+    final text = await rootBundle.loadString(ThemeAssets.monthlyOverview);
+    final list = jsonDecode(text) as List<dynamic>;
+    return list.map((dynamic e) => MonthlyHistoryData.fromJson(e as Map<String, dynamic>)).toList();
   }
 }

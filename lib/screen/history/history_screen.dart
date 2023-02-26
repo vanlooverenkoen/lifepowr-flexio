@@ -3,6 +3,7 @@ import 'package:flexio_kvl/model/history/history_data_type.dart';
 import 'package:flexio_kvl/model/history/history_type.dart';
 import 'package:flexio_kvl/screen/history/chart/custom_chart_peak_consumption_history_screen.dart';
 import 'package:flexio_kvl/screen/history/chart/fl_chart_peak_consumption_history_screen.dart';
+import 'package:flexio_kvl/screen/history/monthly_history_screen.dart';
 import 'package:flexio_kvl/theme/theme_dimens.dart';
 import 'package:flexio_kvl/util/locale/localization.dart';
 import 'package:flexio_kvl/viewmodel/history/history_viewmodel.dart';
@@ -65,7 +66,7 @@ class HistoryScreen extends StatelessWidget {
                   builder: (context) {
                     switch (viewModel.historyType) {
                       case HistoryType.monthlyOverview:
-                        return Container();
+                        return const MonthlyHistoryScreen();
                       case HistoryType.customChartAssets:
                         return CustomChartConsumptionHistoryScreen(
                           dataType: HistoryDataType.asset,

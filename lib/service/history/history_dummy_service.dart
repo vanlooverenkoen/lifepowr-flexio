@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flexio_kvl/di/injectable.dart';
 import 'package:flexio_kvl/model/history/history_consumption.dart';
 import 'package:flexio_kvl/model/history/history_consumption_data.dart';
+import 'package:flexio_kvl/model/history/monthly_overview_data.dart';
 import 'package:flexio_kvl/service/history/history_service.dart';
 import 'package:flexio_kvl/theme/theme_durations.dart';
 import 'package:injectable/injectable.dart';
@@ -53,5 +54,10 @@ class HistoryDummyService extends HistoryService {
       minConsumption: 0,
       maxConsumption: yearlyPeakConsumption,
     );
+  }
+
+  @override
+  Future<List<MonthlyHistoryData>> getMonthlyHistory() {
+    throw UnimplementedError();
   }
 }
