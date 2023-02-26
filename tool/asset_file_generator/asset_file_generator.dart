@@ -4,11 +4,8 @@ import 'dart:io';
 
 void main() {
   final file = File('tool/asset_file_generator/history.csv');
-  final assetFileFull = File('assets/data/history.csv');
-  final assetFileSmall = File('assets/data/history_small.csv');
-  final text = file.readAsStringSync();
-  final lines = text.trim().split('\n');
-  assetFileFull.writeAsString(text);
+  final assetFileSmall = File('assets/data/history_all.csv');
+  final lines = file.readAsLinesSync();
   final sb = StringBuffer();
   lines.removeAt(0);
   sb.writeln('Van Datum;Van Tijdstip;Tot Datum;Tot Tijdstip;Volume');
@@ -29,7 +26,7 @@ void main() {
       if (!registerType.toLowerCase().contains('afname')) continue;
       final volume = double.tryParse(rows[8].replaceAll(',', '.'));
       if (volume == null) continue;
-      sb.writeln('$startDate $startTime;$endDate $endTime;$volume;');
+      sb.writeln('$startDate $startTime;$endDate $endTime;$volume');
       index++;
     } catch (e) {
       print('Error: $e');
