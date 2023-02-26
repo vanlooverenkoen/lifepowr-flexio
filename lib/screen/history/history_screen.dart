@@ -1,6 +1,6 @@
 import 'package:flexio_kvl/di/injectable.dart';
-import 'package:flexio_kvl/model/history/history_chart_type.dart';
 import 'package:flexio_kvl/model/history/history_data_type.dart';
+import 'package:flexio_kvl/model/history/history_type.dart';
 import 'package:flexio_kvl/screen/history/chart/custom_chart_peak_consumption_history_screen.dart';
 import 'package:flexio_kvl/screen/history/chart/fl_chart_peak_consumption_history_screen.dart';
 import 'package:flexio_kvl/theme/theme_dimens.dart';
@@ -47,7 +47,7 @@ class HistoryScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            _getChartTypeText(viewModel.chartType, localization),
+                            _getChartTypeText(viewModel.historyType, localization),
                             style: theme.defaultText.body,
                           ),
                         ),
@@ -63,26 +63,28 @@ class HistoryScreen extends StatelessWidget {
               Expanded(
                 child: Builder(
                   builder: (context) {
-                    switch (viewModel.chartType) {
-                      case ChartType.customChartAssets:
+                    switch (viewModel.historyType) {
+                      case HistoryType.monthlyOverview:
+                        return Container();
+                      case HistoryType.customChartAssets:
                         return CustomChartConsumptionHistoryScreen(
                           dataType: HistoryDataType.asset,
-                          key: ValueKey(viewModel.chartType),
+                          key: ValueKey(viewModel.historyType),
                         );
-                      case ChartType.customChartDummy:
+                      case HistoryType.customChartDummy:
                         return CustomChartConsumptionHistoryScreen(
                           dataType: HistoryDataType.dummy,
-                          key: ValueKey(viewModel.chartType),
+                          key: ValueKey(viewModel.historyType),
                         );
-                      case ChartType.flChartAsset:
+                      case HistoryType.flChartAsset:
                         return FlChartPeakConsumptionHistoryScreen(
                           dataType: HistoryDataType.asset,
-                          key: ValueKey(viewModel.chartType),
+                          key: ValueKey(viewModel.historyType),
                         );
-                      case ChartType.flChartDummy:
+                      case HistoryType.flChartDummy:
                         return FlChartPeakConsumptionHistoryScreen(
                           dataType: HistoryDataType.dummy,
-                          key: ValueKey(viewModel.chartType),
+                          key: ValueKey(viewModel.historyType),
                         );
                     }
                   },
@@ -93,15 +95,17 @@ class HistoryScreen extends StatelessWidget {
         ),
       );
 
-  String _getChartTypeText(ChartType chartType, Localization localization) {
+  String _getChartTypeText(HistoryType chartType, Localization localization) {
     switch (chartType) {
-      case ChartType.customChartAssets:
+      case HistoryType.monthlyOverview:
+        return 'Montly Overview';
+      case HistoryType.customChartAssets:
         return 'Custom Chart (Data from assets)';
-      case ChartType.customChartDummy:
+      case HistoryType.customChartDummy:
         return 'Custom Chart (Data from dummy)';
-      case ChartType.flChartAsset:
+      case HistoryType.flChartAsset:
         return 'FL Chart (Data from assets)';
-      case ChartType.flChartDummy:
+      case HistoryType.flChartDummy:
         return 'FL Chart (Data from dummy)';
     }
   }

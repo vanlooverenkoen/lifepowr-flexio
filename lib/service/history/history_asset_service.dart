@@ -27,7 +27,7 @@ class HistoryAssetService extends HistoryService {
       await Future<void>.delayed(ThemeDurations.demoApiDuration);
       return cache;
     }
-    final text = await rootBundle.loadString(ThemeAssets.historyCsv);
+    final text = await rootBundle.loadString(ThemeAssets.historyAllCsv);
     final result = await compute(parseCsv, text);
     this.cache = result;
     return result;
@@ -46,16 +46,12 @@ class HistoryAssetService extends HistoryService {
       try {
         final rows = trimmedLine.split(';');
         final startDate = rows[0];
-        final startTime = rows[1];
-        final startDateTime = dateFormatter.parse('$startDate $startTime');
-        final endDate = rows[2];
-        final endTime = rows[3];
-        final endDateTime = dateFormatter.parse('$endDate $endTime');
-        final volume = double.tryParse(rows[8].replaceAll(',', '.'));
+        final startDateTime = dateFormatter.parse(startDate);
+        final endDate = rows[1];
+        final endDateTime = dateFormatter.parse(endDate);
+        final volume = double.tryParse(rows[2].replaceAll(',', '.'));
         if (volume == null) continue;
         final consumption = volume * kwhFactor * wattFactor;
-        final type = rows[10];
-        if (type != 'Gevalideerd') continue;
         monthlyPeakConsumption = max(monthlyPeakConsumption, consumption);
         yearlyPeakConsumption = max(monthlyPeakConsumption, yearlyPeakConsumption);
         history.add(HistoryConsumptionData(

@@ -1,4 +1,5 @@
-enum ChartType {
+enum HistoryType {
+  monthlyOverview,
   customChartAssets,
   customChartDummy,
   flChartAsset,

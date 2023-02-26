@@ -1,4 +1,4 @@
-import 'package:flexio_kvl/model/history/history_chart_type.dart';
+import 'package:flexio_kvl/model/history/history_type.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 
@@ -8,11 +8,11 @@ class HistoryViewModel with ChangeNotifier {
 
   HistoryViewModel();
 
-  ChartType get chartType => ChartType.values[_index];
+  HistoryType get historyType => HistoryType.values[_index];
 
   void onTapChartType() {
     _index++;
-    if (_index >= ChartType.values.length) {
+    if (_index >= HistoryType.values.length) {
       _index = 0;
     }
     notifyListeners();
