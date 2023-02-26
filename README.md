@@ -28,14 +28,14 @@ web demo: [https://vanlooverenkoen.be/flexio](https://vanlooverenkoen.be/flexio)
 ### We use our own APIs to show data and show and change (iot device) settings in our Mobile App MyFlexiO. API changes are always additive, and additions shouldn’t lead to breaking any functionality in the Mobile app. How could you ensure in a Flutter app that additive changes to an API don’t cause errors?
 
 Versioning of the API is the key. You can use a version number in the url or in the header. The app will only have actively used api calls in the webservice in the app.
-But when an app update is released other users with other versions of the app can still use the app.
+But when an app update is released other users with other versions of the app can still use the old version of the api. The new app will have no references to the old api calls. And the old app will have no references to the new api calls.
 example:
 
 - {baseUrl}/api/v1/history
 - {baseUrl}/api/v2/history (Renamed 2 fields)
 
-In this way the app that is still using v1 can still be used. And the new app can talk to the v2 with the correct new fields.
-After a while you can remove the v1 api calls from the app. And the remote config should be updated to set the min app version to the one that is using v1.
+In this way the old app that is still using v1. And the new app can talk to the v2 with the correct new fields.
+After a while you can set the min version of the app to the buildNr where v2 was introduced. And after remove the v1 api calls in backend.
 
 ### With certain Mobile app updates, we want to force the user to use the latest version. How
   would you tackle this?
