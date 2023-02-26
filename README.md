@@ -40,10 +40,10 @@ After a while you can set the min version of the app to the buildNr where v2 was
 ### With certain Mobile app updates, we want to force the user to use the latest version. How
   would you tackle this?
 
-In order to implement app updates you can do multiple things. I usually combine a remote config to do the version check.
+In order to implement app updates you can do multiple things. I usually combine a remote config to do the version check with playstore in app updates (android only)
 (AWS, Firebase Remote Config, static json somewhere on the internet)
 
-There reason that it should not be returned from a status call from the api is that the api can be down. But the version check is required for a the next update. So best to seperate these 2 things on a seperate endpoint/server
+The reason that it should not be returned from a version check call in the "flexio" api is that the api can be down. But the version check is required for a the next update. So best to seperate these 2 things on a seperate endpoint/server
 
 I always use the buildNr (1) instead of the version name (1.0.0). This is because buildNr should always be incremented on android. To keep it simple I use the same on iOS.
 
