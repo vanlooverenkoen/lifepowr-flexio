@@ -13,6 +13,8 @@ An application to see peak consumption in the MyFlexio App
 You can just use flutter stable.
 Normally I would be using fvm for better version management. But to keep it as simple as possible I did not use it
 
+web demo: [https://vanlooverenkoen.be/flexio](https://vanlooverenkoen.be/flexio)
+
 ## Remarks:
 
 - I did not use SVG's to keep it simple, but I would normally use SVG's for icons.
