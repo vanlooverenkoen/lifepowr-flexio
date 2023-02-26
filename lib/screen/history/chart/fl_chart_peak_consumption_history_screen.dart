@@ -5,15 +5,18 @@ import 'package:flexio_kvl/viewmodel/history/charts/fl_chart_peak_consumption_vi
 import 'package:flutter/material.dart';
 
 class FlChartPeakConsumptionHistoryScreen extends StatelessWidget {
+  final int? month;
   final HistoryDataType dataType;
 
   const FlChartPeakConsumptionHistoryScreen({
+    required this.month,
     required this.dataType,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) => PeakConsumptionHistoryScreen<FlChartPeakConsumptionViewModel>(
+    month: month,
         dataType: dataType,
         builder: (context, viewModel) => LineChart(
           key: UniqueKey(),

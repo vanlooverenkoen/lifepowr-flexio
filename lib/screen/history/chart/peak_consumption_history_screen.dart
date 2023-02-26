@@ -9,18 +9,20 @@ import 'package:flutter/material.dart';
 typedef ChartBuilder<T extends PeakConsumptionViewModel> = Widget Function(BuildContext context, T viewModel);
 
 class PeakConsumptionHistoryScreen<T extends PeakConsumptionViewModel> extends StatelessWidget {
-  final ChartBuilder<T> builder;
+  final int? month;
   final HistoryDataType dataType;
+  final ChartBuilder<T> builder;
 
   const PeakConsumptionHistoryScreen({
-    required this.builder,
+    required this.month,
     required this.dataType,
+    required this.builder,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) => ProviderWidget<T>(
-        create: () => getIt()..init(dataType),
+        create: () => getIt()..init(month, dataType),
         consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => Column(
           children: [
             if (viewModel.isLoading) ...[

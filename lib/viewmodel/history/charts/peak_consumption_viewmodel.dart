@@ -9,7 +9,8 @@ abstract class PeakConsumptionViewModel with ChangeNotifier {
   var _disposed = false;
   var _isLoading = true;
 
-  late HistoryDataType _dataType;
+  late final HistoryDataType _dataType;
+  late final int? _month;
 
   bool get isLoading => _isLoading;
 
@@ -17,7 +18,8 @@ abstract class PeakConsumptionViewModel with ChangeNotifier {
 
   PeakConsumptionViewModel(this.historyRepository);
 
-  Future<void> init(HistoryDataType dataType) async {
+  Future<void> init(int? month, HistoryDataType dataType) async {
+    _month = month;
     _dataType = dataType;
     await _getData();
   }
@@ -32,7 +34,10 @@ abstract class PeakConsumptionViewModel with ChangeNotifier {
     try {
       _isLoading = true;
       notifyListeners();
-      final data = await historyRepository.getPeakConsumptionData(dataType: _dataType);
+      final data = await historyRepository.getPeakConsumptionData(
+        month: _month,
+        dataType: _dataType,
+      );
       if (_disposed) return;
       await processData(data);
     } catch (e) {

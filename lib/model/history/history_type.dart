@@ -1,4 +1,4 @@
-enum ChartType {
+enum HistoryType {
   customChartAssets,
   customChartDummy,
   flChartAsset,
