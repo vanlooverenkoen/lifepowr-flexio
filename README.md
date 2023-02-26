@@ -64,11 +64,11 @@ Using firebase also results in easier maintenance of your remote config. To set 
 ## Mobile Demo
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/vanlooverenkoen/lifepowr-flexio/master/github-images/img_1.png" width="200" height="200" alt="Image 1">
-  <img src="https://raw.githubusercontent.com/vanlooverenkoen/lifepowr-flexio/master/github-images/img_2.png" width="200" height="200" alt="Image 2">
-  <img src="https://raw.githubusercontent.com/vanlooverenkoen/lifepowr-flexio/master/github-images/img_3.png" width="200" height="200" alt="Image 3">
+  <img src="https://raw.githubusercontent.com/vanlooverenkoen/lifepowr-flexio/master/github-images/img_1.png" width="200" height="350" alt="Image 1">
+  <img src="https://raw.githubusercontent.com/vanlooverenkoen/lifepowr-flexio/master/github-images/img_2.png" width="200" height="350" alt="Image 2">
+  <img src="https://raw.githubusercontent.com/vanlooverenkoen/lifepowr-flexio/master/github-images/img_3.png" width="200" height="350" alt="Image 3">
   <br>
-  <img src="https://raw.githubusercontent.com/vanlooverenkoen/lifepowr-flexio/master/github-images/img_4.png" width="200" height="200" alt="Image 4">
-  <img src="https://raw.githubusercontent.com/vanlooverenkoen/lifepowr-flexio/master/github-images/img_5.png" width="200" height="200" alt="Image 5">
-  <img src="https://raw.githubusercontent.com/vanlooverenkoen/lifepowr-flexio/master/github-images/img_6.png" width="200" height="200" alt="Image 6">
+  <img src="https://raw.githubusercontent.com/vanlooverenkoen/lifepowr-flexio/master/github-images/img_4.png" width="200" height="350" alt="Image 4">
+  <img src="https://raw.githubusercontent.com/vanlooverenkoen/lifepowr-flexio/master/github-images/img_5.png" width="200" height="350" alt="Image 5">
+  <img src="https://raw.githubusercontent.com/vanlooverenkoen/lifepowr-flexio/master/github-images/img_6.png" width="200" height="350" alt="Image 6">
 </div>
