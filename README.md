@@ -22,28 +22,34 @@ web demo: [https://vanlooverenkoen.be/flexio](https://vanlooverenkoen.be/flexio)
 - The home page is recreated from the images in the playstore. The charts are just images. But I wanted to make it a more complete application.
 - I would do a lot more testing. But I did not have time to do it, gave some examples on what is important to do. (golden tests, widget tests, integration tests)
 - I would use GetX to do navigation. But to keep it simple I used simple navigators. To keep the viewmodels clean
+- The History detail page also has a switch between dummy & asset data
+    - ASSET: Based on the given CSV
+    - DUMMY: Randomly generated data inside the application. (For demo purposes)
+- Also added a Custom & FL Chart implementation.
+    - CUSTOM: Fully custom/ performant chart -> event handling should be added in a next iteration (not focus for me, I wanted to show what is really important for an interview)
+    - FL: Using the FL Chart library (not performance & should not be used in production) (Touch events default provided)
 
 ## Questions:
 
 ### We use our own APIs to show data and show and change (iot device) settings in our Mobile App MyFlexiO. API changes are always additive, and additions shouldn’t lead to breaking any functionality in the Mobile app. How could you ensure in a Flutter app that additive changes to an API don’t cause errors?
 
 Versioning of the API is the key. You can use a version number in the url or in the header. The app will only have actively used api calls in the webservice in the app.
-But when an app update is released other users with other versions of the app can still use the app.
+But when an app update is released other users with other versions of the app can still use the old version of the api. The new app will have no references to the old api calls. And the old app will have no references to the new api calls.
 example:
 
 - {baseUrl}/api/v1/history
 - {baseUrl}/api/v2/history (Renamed 2 fields)
 
-In this way the app that is still using v1 can still be used. And the new app can talk to the v2 with the correct new fields.
-After a while you can remove the v1 api calls from the app. And the remote config should be updated to set the min app version to the one that is using v1.
+In this way the old app that is still using v1. And the new app can talk to the v2 with the correct new fields.
+After a while you can set the min version of the app to the buildNr where v2 was introduced. And after remove the v1 api calls in backend.
 
 ### With certain Mobile app updates, we want to force the user to use the latest version. How
   would you tackle this?
 
-In order to implement app updates you can do multiple things. I usually combine a remote config to do the version check.
+In order to implement app updates you can do multiple things. I usually combine a remote config to do the version check with playstore in app updates (android only)
 (AWS, Firebase Remote Config, static json somewhere on the internet)
 
-There reason that it should not be returned from a status call from the api is that the api can be down. But the version check is required for a the next update. So best to seperate these 2 things on a seperate endpoint/server
+The reason that it should not be returned from a version check call in the "flexio" api is that the api can be down. But the version check is required for a the next update. So best to seperate these 2 things on a seperate endpoint/server
 
 I always use the buildNr (1) instead of the version name (1.0.0). This is because buildNr should always be incremented on android. To keep it simple I use the same on iOS.
 
