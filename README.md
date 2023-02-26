@@ -22,10 +22,7 @@ Normally I would be using fvm for better version management. But to keep it as s
 
 ## Questions:
 
-### We use our own APIs to show data and show and change (iot device) settings in our Mobile
-    App MyFlexiO. API changes are always additive, and additions shouldn’t lead to breaking
-    any functionality in the Mobile app. How could you ensure in a Flutter app that additive
-    changes to an API don’t cause errors?
+### We use our own APIs to show data and show and change (iot device) settings in our Mobile App MyFlexiO. API changes are always additive, and additions shouldn’t lead to breaking any functionality in the Mobile app. How could you ensure in a Flutter app that additive changes to an API don’t cause errors?
 
 Versioning of the API is the key. You can use a version number in the url or in the header. The app will only have actively used api calls in the webservice in the app.
 But when an app update is released other users with other versions of the app can still use the app.
