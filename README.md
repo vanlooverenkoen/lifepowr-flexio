@@ -2,22 +2,23 @@
 
 An application to see peak consumption in the MyFlexio App
 
-## Assumptions
+## Assumptions (Chart is calculated that this is always the case)
 
-- Data is always returned in 15 min intervals. (Chart is calculated that this is always the case)
-- Data is always returned in ascending order. (Chart is calculated that this is always the case)
-- Data is always returned in the same timezone as the user. (Chart is calculated that this is always the case)
-- Data is always returned in the same timezone as the user. (Chart is calculated that this is always the case)
+- Data is always returned in 15 min intervals.
+- Data is always returned in correct order.
+- Data is always returned in the same timezone as the user.
 
 ## Running the application
 
 You can just use flutter stable.
 Normally I would be using fvm for better version management. But to keep it as simple as possible I did not use it
 
-Remarks:
+## Remarks:
 
 - I did not use SVG's to keep it simple, but I would normally use SVG's for icons.
 - The home page is recreated from the images in the playstore. The charts are just images. But I wanted to make it a more complete application.
+- I would do a lot more testing. But I did not have time to do it, gave some examples on what is important to do. (golden tests, widget tests, integration tests)
+- I would use GetX to do navigation. But to keep it simple I used simple navigators. To keep the viewmodels clean
 
 ## Questions:
 
