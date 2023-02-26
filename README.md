@@ -22,6 +22,12 @@ web demo: [https://vanlooverenkoen.be/flexio](https://vanlooverenkoen.be/flexio)
 - The home page is recreated from the images in the playstore. The charts are just images. But I wanted to make it a more complete application.
 - I would do a lot more testing. But I did not have time to do it, gave some examples on what is important to do. (golden tests, widget tests, integration tests)
 - I would use GetX to do navigation. But to keep it simple I used simple navigators. To keep the viewmodels clean
+- The History detail page also has a switch between dummy & asset data
+    - ASSET: Based on the given CSV
+    - DUMMY: Randomly generated data inside the application. (For demo purposes)
+- Also added a Custom & FL Chart implementation.
+    - CUSTOM: Fully custom/ performant chart -> event handling should be added in a next iteration (not focus for me, I wanted to show what is really important for an interview)
+    - FL: Using the FL Chart library (not performance & should not be used in production) (Touch events default provided)
 
 ## Questions:
 
