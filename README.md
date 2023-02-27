@@ -22,6 +22,7 @@ web demo: [https://vanlooverenkoen.be/flexio](https://vanlooverenkoen.be/flexio)
 - Translation setup is done. (Using locale_gen, a package that I created myself) But I did not have time to translate the app.
 - Loading states are implemented. Error states are not implemented. (But I would do it in a real app)
 - I did not use SVG's to keep it simple, but I would normally use SVG's for icons.
+- Dropdown UI was added to match current app design. (This is actually a switcher that goes through the possible charts)
 - The home page is recreated from the images in the playstore. The charts are just images. But I wanted to make it a more complete application.
 - I would do a lot more testing. But I did not have time to do it, gave some examples on what is important to do. (golden tests, widget tests, integration tests)
 - I would use GetX to do navigation. But to keep it simple I used simple navigators. To keep the viewmodels clean
