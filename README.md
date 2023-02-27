@@ -17,7 +17,7 @@ web demo: [https://vanlooverenkoen.be/flexio](https://vanlooverenkoen.be/flexio)
 
 ## Remarks:
 
-- I am not a designer! But I do know what a good design should look like. Correct padding, safe area,... this is all implementated. A designer should take a good look at what should be shown on the screen itself. But this is how I would want to see it as a user.
+- I am not a designer! But I do know what a good design should look like. Correct padding, safe area,... this is all implemented. A designer should take a good look at what should be shown on the screen itself. But this is how I would want to see it as a user.
 - Current implementation was done for phone. No tablet or web support. (only small improvements on web)
 - Translation setup is done. (Using locale_gen, a package that I created myself) But I did not have time to translate the app.
 - Loading states are implemented. Error states are not implemented. (But I would do it in a real app)
