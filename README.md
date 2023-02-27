@@ -19,6 +19,8 @@ web demo: [https://vanlooverenkoen.be/flexio](https://vanlooverenkoen.be/flexio)
 
 - I am not a designer! But I do know what a good design should look like. Correct padding, safe area,... this is all implementated. A designer should take a good look at what should be shown on the screen itself. But this is how I would want to see it as a user.
 - Current implementation was done for phone. No tablet or web support. (only small improvements on web)
+- Translation setup is done. (Using locale_gen, a package that I created myself) But I did not have time to translate the app.
+- Loading states are implemented. Error states are not implemented. (But I would do it in a real app)
 - I did not use SVG's to keep it simple, but I would normally use SVG's for icons.
 - The home page is recreated from the images in the playstore. The charts are just images. But I wanted to make it a more complete application.
 - I would do a lot more testing. But I did not have time to do it, gave some examples on what is important to do. (golden tests, widget tests, integration tests)
